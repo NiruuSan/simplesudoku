@@ -1,0 +1,414 @@
+/* Rules page uses global theme variables */
+.rules-page {
+  --text: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --bg-secondary: var(--bg-primary);
+  --bg-tertiary: var(--button-bg);
+  --border: var(--border-light);
+  
+  min-height: 100vh;
+  padding: 2rem;
+  background: transparent;
+}
+
+.rules-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.rules-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.rules-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rules-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.difficulty-filter {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.difficulty-filter button {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 20px;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.difficulty-filter button:hover {
+  background: var(--bg-tertiary);
+  color: var(--text);
+}
+
+.difficulty-filter button.active {
+  background: var(--primary);
+  color: white;
+}
+
+.difficulty-filter button.beginner.active {
+  background: #22c55e;
+}
+
+.difficulty-filter button.intermediate.active {
+  background: #f59e0b;
+}
+
+.difficulty-filter button.advanced.active {
+  background: #ef4444;
+}
+
+.difficulty-filter button.expert.active {
+  background: #8b5cf6;
+}
+
+/* Rules Grid - Card Layout */
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Rule Card */
+.rule-card {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.rule-card:hover {
+  border-color: var(--primary-light);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.rule-card-header {
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rule-card-header h3 {
+  flex: 1;
+  font-size: 1.15rem;
+  color: var(--text);
+  margin: 0;
+  font-weight: 600;
+}
+
+.difficulty-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.difficulty-badge.beginner {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.difficulty-badge.intermediate {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.difficulty-badge.advanced {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.difficulty-badge.expert {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+.rule-card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.rule-description {
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Visual Example Section */
+.rule-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Mini Grid - Matches Main Game Design */
+.mini-sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--cell-border-box);
+  border: 3px solid var(--cell-border-box);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1;
+  box-shadow: var(--shadow-md);
+}
+
+.mini-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--cell-border);
+}
+
+.mini-cell {
+  background: var(--cell-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  position: relative;
+  transition: all 0.2s;
+}
+
+.mini-cell .given {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.mini-cell .answer {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Mini Cell Candidates */
+.mini-candidates {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+}
+
+.mini-candidates span {
+  font-size: 0.45rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.mini-candidates span.has-candidate {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Cell Highlights - Match Game Highlights */
+.mini-cell.highlight-target {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0) !important;
+  box-shadow: inset 0 0 0 2px #22c55e;
+}
+
+.mini-cell.highlight-target .answer,
+.mini-cell.highlight-target .annotation {
+  color: #16a34a !important;
+  font-weight: 700;
+}
+
+.mini-cell.highlight-pair {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+  box-shadow: inset 0 0 0 2px #3b82f6;
+}
+
+.mini-cell.highlight-pair .mini-candidates span.has-candidate {
+  color: #1d4ed8 !important;
+}
+
+.mini-cell.highlight-triple {
+  background: linear-gradient(135deg, #ede9fe, #ddd6fe) !important;
+  box-shadow: inset 0 0 0 2px #8b5cf6;
+}
+
+.mini-cell.highlight-triple .mini-candidates span.has-candidate {
+  color: #6d28d9 !important;
+}
+
+.mini-cell.highlight-eliminator {
+  background: #fef2f2 !important;
+  box-shadow: inset 0 0 0 2px #fca5a5;
+}
+
+.mini-cell.highlight-eliminator .given {
+  color: #dc2626 !important;
+}
+
+.mini-cell.highlight-affected {
+  background: #fef9c3 !important;
+  box-shadow: inset 0 0 0 2px #facc15;
+}
+
+.mini-cell.highlight-affected .mini-candidates span.has-candidate {
+  color: #a16207 !important;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.legend-item.target .legend-color {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  border: 2px solid #22c55e;
+}
+
+.legend-item.pair .legend-color {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  border: 2px solid #3b82f6;
+}
+
+.legend-item.triple .legend-color {
+  background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+  border: 2px solid #8b5cf6;
+}
+
+.legend-item.eliminator .legend-color {
+  background: #fef2f2;
+  border: 2px solid #fca5a5;
+}
+
+.legend-item.affected .legend-color {
+  background: #fef9c3;
+  border: 2px solid #facc15;
+}
+
+/* How To Section */
+.how-to {
+  background: var(--bg-tertiary);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.how-to h4 {
+  font-size: 0.85rem;
+  color: var(--text);
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.how-to h4::before {
+  content: '📝';
+  font-size: 1rem;
+}
+
+.how-to ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.how-to li {
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+.how-to li::marker {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .rules-page {
+    padding: 1rem;
+  }
+
+  .rules-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .rule-card-body {
+    padding: 1rem;
+  }
+
+  .mini-sudoku-grid {
+    max-width: 240px;
+  }
+
+  .mini-cell {
+    font-size: 0.7rem;
+  }
+
+  .mini-candidates span {
+    font-size: 0.35rem;
+  }
+}
+
