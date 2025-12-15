@@ -206,7 +206,12 @@ function findNakedSingle(grid: number[], candidates: Set<number>[]): Hint | null
     if (grid[i] !== 0) continue;
     
     if (candidates[i].size === 1) {
-      const value = candidates[i].values().next().value;
+      const value = candidates[i].values().next().value as number | undefined;
+      // Safety guard for TypeScript – in practice size === 1 guarantees a value,
+      // but we still handle the extremely unlikely undefined case.
+      if (value === undefined) {
+        continue;
+      }
       const elimInfo = getEliminationInfo(grid, i);
       const { row, col } = getCellInfo(i);
       
