@@ -613,7 +613,11 @@ function findPointingPairs(grid: number[], candidates: Set<number>[], notes: Set
         // Check if all cells are in same row
         const rows = new Set(cellsWithNum.map(i => getCellInfo(i).row));
         if (rows.size === 1) {
-          const row = rows.values().next().value;
+          const rowIter = rows.values().next();
+          if (rowIter.done || rowIter.value === undefined) {
+            continue;
+          }
+          const row = rowIter.value as number;
           const rowIndices = getRowIndices(row);
           const affected = rowIndices.filter(i => 
             !boxIndices.includes(i) && candidates[i].has(num)
@@ -641,7 +645,11 @@ function findPointingPairs(grid: number[], candidates: Set<number>[], notes: Set
         // Check if all cells are in same column
         const cols = new Set(cellsWithNum.map(i => getCellInfo(i).col));
         if (cols.size === 1) {
-          const col = cols.values().next().value;
+          const colIter = cols.values().next();
+          if (colIter.done || colIter.value === undefined) {
+            continue;
+          }
+          const col = colIter.value as number;
           const colIndices = getColIndices(col);
           const affected = colIndices.filter(i => 
             !boxIndices.includes(i) && candidates[i].has(num)
